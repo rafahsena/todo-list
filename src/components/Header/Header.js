@@ -15,7 +15,7 @@ export default function SearchAppBar() {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0}>
         <Toolbar className={classes.header}>
           <IconButton
             edge="start"
