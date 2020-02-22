@@ -1,8 +1,9 @@
 import { fade, makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -12,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   title: {
-    flexGrow: 1,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -49,9 +49,9 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: 120,
+      width: 180,
       '&:focus': {
-        width: 200,
+        width: 250,
       },
     },
   },

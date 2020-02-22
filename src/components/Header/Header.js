@@ -1,20 +1,22 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import useStyles from './styles';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import InputBase from "@material-ui/core/InputBase";
+import useStyles from "./styles";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
+import { Badge } from "@material-ui/core";
 
 export default function SearchAppBar() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static" >
-        <Toolbar>
+    <div>
+      <AppBar position="static">
+        <Toolbar className={classes.header}>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -34,11 +36,16 @@ export default function SearchAppBar() {
               placeholder="Buscar por..."
               classes={{
                 root: classes.inputRoot,
-                input: classes.inputInput,
+                input: classes.inputInput
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              inputProps={{ "aria-label": "search" }}
             />
           </div>
+          <IconButton className={classes.inputRoot}>
+            <Badge >
+              <NotificationsNoneIcon />
+            </Badge>
+          </IconButton>
         </Toolbar>
       </AppBar>
     </div>
