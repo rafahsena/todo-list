@@ -5,35 +5,35 @@ import Header from "./components/Header/Header";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
+import blue from "@material-ui/core/colors/blue";
+import Hidden from "@material-ui/core/Hidden";
 
 export default function App() {
   const theme = createMuiTheme({
     palette: {
       primary: { main: "#7e57c2" },
-      secondary: { main: "#ff4081" }
+      secondary: blue
     }
   });
 
-
   return (
     <ThemeProvider theme={theme}>
-    <Box className="wrapper" display="flex" flexDirection="column">
-
-      <Header />
-      <Box display="flex" flex={1}>
-        <Grid container>
-          <Grid item xs={0} sm={2}>
-            <Sidebar />
+      <Box className="wrapper" display="flex" flexDirection="column">
+        <Header />
+        <Box display="flex" flex={1}>
+          <Grid container>
+            <Hidden smDown>
+              <Grid item md={2}>
+                <Sidebar />
+              </Grid>
+            </Hidden>
+            <Grid item xs={12} md={10}>
+              <Content />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={10}>
-            <Content>
-            </Content>
-          </Grid>
-        </Grid>
+        </Box>
       </Box>
-    </Box>
     </ThemeProvider>
   );
 }
