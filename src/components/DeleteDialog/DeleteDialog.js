@@ -32,7 +32,7 @@ const DeleteDialog = props => {
       </DialogContentText>
       <div className={classes.options}>
         <Button onClick={() => deleteTodo(props.index)} disableElevation color="secondary" variant="contained">Apagar</Button>
-        <Button onClick={() => handleClose()} autoFocus disableElevation color="">Cancelar</Button>
+        <Button onClick={() => handleClose()} autoFocus disableElevation>Cancelar</Button>
       </div>
     </Dialog>
   );
