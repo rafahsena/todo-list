@@ -6,14 +6,15 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import blue from "@material-ui/core/colors/blue";
+import indigo from "@material-ui/core/colors/indigo";
 import Hidden from "@material-ui/core/Hidden";
+import EditTodo from "./containers/EditTodo/EditTodo";
 
 export default function App() {
   const theme = createMuiTheme({
     palette: {
       primary: { main: "#7e57c2" },
-      secondary: blue
+      secondary: indigo
     }
   });
 
@@ -28,9 +29,14 @@ export default function App() {
                 <Sidebar />
               </Grid>
             </Hidden>
-            <Grid item xs={12} md={10}>
+            <Grid item xs={12} md={7}>
               <Content />
             </Grid>
+            <Hidden smDown>
+              <Grid item md={3}>
+                <EditTodo />
+              </Grid>
+            </Hidden>
           </Grid>
         </Box>
       </Box>
