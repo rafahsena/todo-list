@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import useStyles from "./styles";
 import Todo from "../Todo/Todo";
 import List from "@material-ui/core/List";
-import InputBase from "@material-ui/core/InputBase";
+import AddTodo from "../AddTodo/AddTodo";
 
 const Content = props => {
   const classes = useStyles();
@@ -15,9 +15,9 @@ const Content = props => {
     setTodos(newTodos);
   };
 
-  const handleKeyPress = event => {
+  const handleTodoInput = (event, date) => {
     if (event.key === "Enter") {
-      const todo = { text: event.target.value };
+      const todo = { text: event.target.value, date: date, isDone: false };
       const newState = [...todos, todo];
       setTodos(newState);
       event.target.value = "";
@@ -52,16 +52,7 @@ const Content = props => {
     <div className={classes.root}>
       <Container maxWidth="xl" disableGutters>
         <h2 className={classes.title}>Minhas Tarefas</h2>
-        <div className={classes.addTodo}>
-          <InputBase
-            placeholder="Escreva sua tarefa e pressione Enter"
-            classes={{ input: classes.inputInput, root: classes.inputRoot }}
-            inputProps={{
-              "aria-label": "add-todo",
-              onKeyPress: event => handleKeyPress(event)
-            }}
-          />
-        </div>
+        <AddTodo handleTodoInput={handleTodoInput} />
         <List>{todoList}</List>
       </Container>
     </div>
