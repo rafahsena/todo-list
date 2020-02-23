@@ -4,6 +4,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
+import Container from "@material-ui/core/Container";
 import useStyles from "./styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
@@ -16,6 +17,8 @@ export default function SearchAppBar() {
   return (
     <div>
       <AppBar position="static" elevation={0}>
+        <Container maxWidth='xl'>
+
         <Toolbar className={classes.header}>
           <IconButton
             edge="start"
@@ -47,6 +50,7 @@ export default function SearchAppBar() {
             </Badge>
           </IconButton>
         </Toolbar>
+        </Container>
       </AppBar>
     </div>
   );
