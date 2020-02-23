@@ -28,7 +28,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.shape.borderRadius,
     width: "100%",
     "&.Mui-focused": {
-      borderColor: theme.palette.secondary.light
+      borderColor: theme.palette.secondary.light,
+      color: 'rgba(0, 0, 0, 0.87)',
     }
   },
   inputInput: {

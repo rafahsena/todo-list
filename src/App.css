@@ -2,7 +2,3 @@ html, body, #root, .wrapper {
   height: 100%;
   color: rgba(0, 0, 0, 0.87);
 }
-
-textarea:focus, input:focus {
-  color: rgba(0, 0, 0, 0.87);
-}
