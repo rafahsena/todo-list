@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import useStyles from "./styles";
-import Todo from "../../components/Todo/Todo";
+import Todo from "../Todo/Todo";
 import List from "@material-ui/core/List";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -32,7 +32,12 @@ const Content = props => {
 
   if (todos.length) {
     todoList = todos.map((todo, index) => (
-      <Todo key={index} text={todo.text} index={index} deleteTodo={deleteTodo} />
+      <Todo
+        key={index}
+        text={todo.text}
+        index={index}
+        deleteTodo={deleteTodo}
+      />
     ));
   }
 
