@@ -7,7 +7,13 @@ import InputBase from "@material-ui/core/InputBase";
 
 const Content = props => {
   const classes = useStyles();
-  const [todos, setTodos] = useState([{ text: "Jogar LOL" }]);
+  const [todos, setTodos] = useState([]);
+
+  const handleCheckbox = index => {
+    const newTodos = todos.slice();
+    newTodos[index].isDone = !newTodos[index].isDone;
+    setTodos(newTodos);
+  };
 
   const handleKeyPress = event => {
     if (event.key === "Enter") {
@@ -29,14 +35,15 @@ const Content = props => {
       Você ainda não cadastrou nenhuma tarefa :(
     </h4>
   );
-
   if (todos.length) {
     todoList = todos.map((todo, index) => (
       <Todo
         key={index}
         text={todo.text}
+        isDone={todo.isDone}
         index={index}
         deleteTodo={deleteTodo}
+        handleCheckbox={handleCheckbox}
       />
     ));
   }

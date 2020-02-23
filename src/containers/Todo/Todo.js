@@ -10,18 +10,29 @@ import DeleteDialog from "../../components/DeleteDialog/DeleteDialog";
 
 const Todo = props => {
   const [dialogOpen, setDialogOpen] = useState(false);
+
+  const deleteButton = !props.isDone ? (
+    <ListItemSecondaryAction onClick={() => setDialogOpen(true)}>
+      <IconButton edge="end" aria-label="delete-todo">
+        <DeleteIcon />
+      </IconButton>
+    </ListItemSecondaryAction>
+  ) : null;
+
   return (
     <React.Fragment>
-      <ListItem key={props.index} dense button divider>
+      <ListItem key={props.index} dense button divider disabled={props.isDone}>
         <ListItemIcon>
-          <Checkbox edge="start" tabIndex={-1} disableRipple />
+          <Checkbox
+            edge="start"
+            tabIndex={-1}
+            disableRipple
+            checked={props.isDone}
+            onClick={() => props.handleCheckbox(props.index)}
+          />
         </ListItemIcon>
         <ListItemText primary={props.text} />
-        <ListItemSecondaryAction onClick={() => setDialogOpen(true)}>
-          <IconButton edge="end" aria-label="delete-todo">
-            <DeleteIcon />
-          </IconButton>
-        </ListItemSecondaryAction>
+        {deleteButton}
       </ListItem>
       <DeleteDialog
         open={dialogOpen}
