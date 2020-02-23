@@ -27,7 +27,7 @@ const AddTodo = props => {
         onChange={onDateChange}
         value={date}
         clearIcon={null}
-        calendarIcon={<Event color="primary" />}
+        calendarIcon={<Event color="secondary" />}
       />
     </div>
   );

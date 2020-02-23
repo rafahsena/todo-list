@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.black, 0.05),
     [theme.breakpoints.up("sm")]: {
-      width: "50%"
+      width: "95%"
     }
   },
   inputRoot: {
