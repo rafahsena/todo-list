@@ -7,12 +7,9 @@ const Sidebar = props => {
 
   return (
     <Container className={classes.sidebar}>
-      
+      <div></div>
     </Container>
   );
 };
 
 export default Sidebar;
-
-//rgba(44,66,118,.06);
-//border-right: 1px solid rgba(0,0,0,.07);
