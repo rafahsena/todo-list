@@ -11,9 +11,9 @@ import Typography from "@material-ui/core/Typography";
 
 const Todos = props => {
   const classes = useStyles();
-  const {todos, setTodos} = props;
+  const { todos, setTodos } = props;
   const [selectedTodoIndex, setSelectedTodoIndex] = useState(null);
-  
+
   console.log(todos);
   const handleCheckbox = index => {
     const newTodos = todos.slice();
@@ -45,18 +45,26 @@ const Todos = props => {
 
   const handleEditTodoSubmit = todo => {
     const newTodos = todos.slice();
+
     // Create a new todo object with updated values
     const newTodo = { ...todos[selectedTodoIndex], ...todo };
 
-    newTodos.splice(selectedTodoIndex, 1, newTodo);
+    // Find the index of todo on todos array
+    const index = newTodos.findIndex(obj => obj.id === todo.id);
+
+    newTodos.splice(index, 1, newTodo);
     setTodos(newTodos);
     setSelectedTodoIndex(null);
   };
 
   const selectedTodo = todos[selectedTodoIndex];
 
-  const deleteTodo = index => {
+  const deleteTodo = id => {
     const newTodos = todos.slice();
+
+    // Find the index of todo on todos array
+    const index = newTodos.findIndex(obj => obj.id === id);
+
     newTodos.splice(index, 1);
     setTodos(newTodos);
     if (selectedTodoIndex === index) {

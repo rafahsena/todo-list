@@ -31,7 +31,7 @@ const DeleteDialog = props => {
         Tem certeza que quer apagar essa tarefa?
       </DialogContentText>
       <div className={classes.options}>
-        <Button onClick={() => deleteTodo(props.index)} disableElevation color="secondary" variant="contained">Apagar</Button>
+        <Button onClick={() => deleteTodo(props.id)} disableElevation color="secondary" variant="contained">Apagar</Button>
         <Button onClick={() => handleClose()} autoFocus disableElevation>Cancelar</Button>
       </div>
     </Dialog>

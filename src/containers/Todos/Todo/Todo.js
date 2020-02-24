@@ -41,7 +41,7 @@ const Todo = props => {
       </ListItem>
       <DeleteDialog
         open={dialogOpen}
-        index={props.index}
+        id={props.id}
         setDialogOpen={setDialogOpen}
         handleDelete={props.deleteTodo}
       ></DeleteDialog>
