@@ -2,9 +2,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   sidebar: {
-    backgroundColor: "rgba(44,66,118,.06)",
+    backgroundColor: theme.palette.background.paper,
     borderRight: "1px solid rgba(0,0,0,.07)",
     height: "100%"
+  },
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    margin: theme.spacing(3, 0),
   }
 }));
 

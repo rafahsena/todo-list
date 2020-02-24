@@ -44,8 +44,8 @@ const Todos = props => {
   const handleEditTodoSubmit = todo => {
     const newTodos = todos.slice();
     // Create a new todo object with updated values
-    const newTodo = {...todos[selectedTodoIndex], ...todo}
-    
+    const newTodo = { ...todos[selectedTodoIndex], ...todo };
+
     newTodos.splice(selectedTodoIndex, 1, newTodo);
     setTodos(newTodos);
     setSelectedTodoIndex(null);

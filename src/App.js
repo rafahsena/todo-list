@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import indigo from "@material-ui/core/colors/indigo";
 import Hidden from "@material-ui/core/Hidden";
+import Calendar from "./components/Calendar/Calendar";
 
 
 export default function App() {
@@ -26,7 +27,9 @@ export default function App() {
           <Grid container>
             <Hidden smDown>
               <Grid item md={2}>
-                <Sidebar />
+                <Sidebar>
+                  <Calendar />
+                </Sidebar>
               </Grid>
             </Hidden>
             <Grid item xs={12} md={10}>
