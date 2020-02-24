@@ -18,13 +18,12 @@ const useStyles = makeStyles(theme => ({
     borderRadius: theme.shape.borderRadius,
     width: "100%",
     "&.Mui-focused": {
-      borderColor: theme.palette.secondary.light,
+      borderColor: theme.palette.secondary.main,
       color: "rgba(0, 0, 0, 0.87)"
     }
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 2),
-    transition: theme.transitions.create("width"),
     width: "100%"
   },
   datePicker: {
