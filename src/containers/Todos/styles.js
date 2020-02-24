@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     color: "rgba(0, 0, 0, 0.25)",
     textAlign: "center"
   },
+  grid: {
+    height: "100%"
+  },
 }));
 
 export default useStyles;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputBase from "@material-ui/core/InputBase";
 import useStyles from "./styles";
-import DatePicker from "../../components/DatePicker/DatePicker";
+import DatePicker from "../../../components/DatePicker/DatePicker";
 
 const AddTodo = props => {
   const classes = useStyles();
@@ -11,6 +11,13 @@ const AddTodo = props => {
     setDate(date);
   };
 
+  const onSubmit = event => {
+    if (event.key === "Enter") {
+      props.handleTodoInput(event, date);
+      setDate(null);
+    }
+  }
+
   return (
     <div className={classes.addTodo}>
       <InputBase
@@ -18,7 +25,7 @@ const AddTodo = props => {
         classes={{ input: classes.inputInput, root: classes.inputRoot }}
         inputProps={{
           "aria-label": "add-todo",
-          onKeyPress: event => props.handleTodoInput(event, date)
+          onKeyPress: event => onSubmit(event)
         }}
       />
       <DatePicker

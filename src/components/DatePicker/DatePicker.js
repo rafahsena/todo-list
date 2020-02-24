@@ -9,7 +9,7 @@ const DatePicker = props => {
   const iconProps = date
     ? {
         clearIcon: (
-          <IconButton size="small">
+          <IconButton component="div" size="small">
             <CloseIcon color="secondary" />
           </IconButton>
         ),
@@ -17,7 +17,7 @@ const DatePicker = props => {
       }
     : {
         calendarIcon: (
-          <IconButton size="small">
+          <IconButton component="div" size="small">
             <Event color="secondary" />
           </IconButton>
         ),

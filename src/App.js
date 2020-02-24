@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Content from "./containers/Content/Content";
+import Todos from "./containers/Todos/Todos";
 import Header from "./components/Header/Header";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import indigo from "@material-ui/core/colors/indigo";
 import Hidden from "@material-ui/core/Hidden";
-import EditTodo from "./containers/EditTodo/EditTodo";
+
 
 export default function App() {
   const theme = createMuiTheme({
@@ -29,14 +29,9 @@ export default function App() {
                 <Sidebar />
               </Grid>
             </Hidden>
-            <Grid item xs={12} md={7}>
-              <Content />
+            <Grid item xs={12} md={10}>
+              <Todos />
             </Grid>
-            <Hidden smDown>
-              <Grid item md={3}>
-                <EditTodo />
-              </Grid>
-            </Hidden>
           </Grid>
         </Box>
       </Box>
