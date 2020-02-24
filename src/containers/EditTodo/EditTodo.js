@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import useStyles from "./styles.js";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
-import InputBase from "@material-ui/core/InputBase";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Event from "@material-ui/icons/Event";
-import DatePicker from "react-date-picker";
+import DatePicker from "../../components/DatePicker/DatePicker";
 import { Button } from "@material-ui/core";
 
 const EditTodo = props => {
@@ -54,14 +51,8 @@ const EditTodo = props => {
 
         <DatePicker
           className={classes.datePicker}
-          value={date}
+          date={date}
           onChange={date => onDateChange(date)}
-          clearIcon={null}
-          calendarIcon={
-            <IconButton size="small">
-              <Event color="secondary" />
-            </IconButton>
-          }
         />
 
         <span className={classes.input}>
