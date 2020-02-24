@@ -4,6 +4,7 @@ import useStyles from "./styles";
 import Todo from "../Todo/Todo";
 import List from "@material-ui/core/List";
 import AddTodo from "../AddTodo/AddTodo";
+import Typography from "@material-ui/core/Typography";
 
 const Content = props => {
   const classes = useStyles();
@@ -31,9 +32,9 @@ const Content = props => {
   };
 
   let todoList = (
-    <h4 className={classes.empty}>
+    <Typography variant="h5" className={classes.empty}>
       Você ainda não cadastrou nenhuma tarefa :(
-    </h4>
+    </Typography>
   );
   if (todos.length) {
     todoList = todos.map((todo, index) => (
