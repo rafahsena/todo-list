@@ -27,18 +27,7 @@ const Calendar = props => {
   return (
     <Scheduler
       locale="pt-BR"
-      data={[
-        {
-          startDate: "2020-02-24 10:00",
-          endDate: "2020-02-24 10:01",
-          title: "Meeting"
-        },
-        {
-          startDate: "2018-11-01 18:00",
-          endDate: "2018-11-01 19:30",
-          title: "Go to a gym"
-        }
-      ]}
+      data={propsToData(props)}
     >
       <ViewState defaultCurrentDate={day} />
       <Toolbar />

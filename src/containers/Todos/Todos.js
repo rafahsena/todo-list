@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 
 const Todos = props => {
   const classes = useStyles();
-  const [todos, setTodos] = useState([]);
+  const {todos, setTodos} = props;
   const [selectedTodoIndex, setSelectedTodoIndex] = useState(null);
 
   const handleCheckbox = index => {
