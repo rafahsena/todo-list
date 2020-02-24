@@ -24,19 +24,31 @@ const Todos = props => {
   };
 
   const handleAddTodoInput = (event, date) => {
-    const todo = {
-      text: event.target.value,
-      date: date,
-      isDone: false,
-      note: ""
-    };
-    const newState = [...todos, todo];
-    setTodos(newState);
-    event.target.value = "";
+    if (event.target.value) {
+      const todo = {
+        text: event.target.value,
+        date: date,
+        isDone: false,
+        note: ""
+      };
+      const newState = [...todos, todo];
+      setTodos(newState);
+      event.target.value = "";
+    }
   };
 
   const handleTodoClick = index => {
     setSelectedTodoIndex(index);
+  };
+
+  const handleEditTodoSubmit = todo => {
+    const newTodos = todos.slice();
+    // Create a new todo object with updated values
+    const newTodo = {...todos[selectedTodoIndex], ...todo}
+    
+    newTodos.splice(selectedTodoIndex, 1, newTodo);
+    setTodos(newTodos);
+    setSelectedTodoIndex(null);
   };
 
   const selectedTodo = todos[selectedTodoIndex];
@@ -81,7 +93,7 @@ const Todos = props => {
       </Grid>
       <Hidden smDown>
         <Grid item md={4}>
-          <EditTodo {...selectedTodo} />
+          <EditTodo {...selectedTodo} handleSubmit={handleEditTodoSubmit} />
         </Grid>
       </Hidden>
     </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -10,6 +10,11 @@ import DeleteDialog from "../../../components/DeleteDialog/DeleteDialog";
 
 const Todo = props => {
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [checked, setChecked] = useState(props.isDone);
+
+  useEffect(() => {
+    setChecked(props.isDone);
+  }, [props]);
 
   const deleteButton = !props.isDone ? (
     <ListItemSecondaryAction onClick={() => setDialogOpen(true)}>
@@ -27,7 +32,7 @@ const Todo = props => {
             edge="start"
             tabIndex={-1}
             disableRipple
-            checked={props.isDone}
+            checked={checked}
             onClick={() => props.handleCheckbox(props.index)}
           />
         </ListItemIcon>
