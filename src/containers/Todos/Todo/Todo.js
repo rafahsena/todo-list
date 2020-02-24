@@ -26,7 +26,7 @@ const Todo = props => {
 
   return (
     <React.Fragment>
-      <ListItem key={props.index} dense button divider disabled={props.isDone} onClick={() => props.handleTodoClick(props.index)} >
+      <ListItem key={props.id} dense button divider disabled={props.isDone} onClick={() => props.handleTodoClick(props.index)} >
         <ListItemIcon>
           <Checkbox
             edge="start"

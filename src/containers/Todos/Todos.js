@@ -13,7 +13,8 @@ const Todos = props => {
   const classes = useStyles();
   const {todos, setTodos} = props;
   const [selectedTodoIndex, setSelectedTodoIndex] = useState(null);
-
+  
+  console.log(todos);
   const handleCheckbox = index => {
     const newTodos = todos.slice();
     newTodos[index].isDone = !newTodos[index].isDone;
@@ -26,6 +27,7 @@ const Todos = props => {
   const handleAddTodoInput = (event, date) => {
     if (event.target.value) {
       const todo = {
+        id: props.getID(),
         text: event.target.value,
         date: date,
         isDone: false,
@@ -65,10 +67,11 @@ const Todos = props => {
   let todoList = todos.length ? (
     todos.map((todo, index) => (
       <Todo
-        key={index}
+        key={todo.id}
         text={todo.text}
         isDone={todo.isDone}
         index={index}
+        id={todo.id}
         deleteTodo={deleteTodo}
         handleCheckbox={handleCheckbox}
         handleTodoClick={handleTodoClick}
