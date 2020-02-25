@@ -33,6 +33,9 @@ const OptionList = props => {
   const notDone = todo => !todo.isDone;
   const done = todo => todo.isDone;
   const weekTasks = todo => {
+    if (todo.isDone) {
+      return false;
+    }
     const today = moment().startOf("day");
     const todoDate = moment(todo.date);
     const endDate = moment(today)
@@ -41,6 +44,9 @@ const OptionList = props => {
     return todoDate.isBetween(today, endDate, null, "[]");
   };
   const overdue = todo => {
+    if (todo.isDone) {
+      return false;
+    }
     const today = moment().startOf("day");
     const todoDate = moment(todo.date);
     return todoDate.isBefore(today);

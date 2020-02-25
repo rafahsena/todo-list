@@ -10,7 +10,8 @@ import { ViewState } from "@devexpress/dx-react-scheduler";
 import moment from "moment";
 
 const propsToData = props => {
-  const data = props.todos.map(todo => {
+  const notDone = props.todos.filter(todo => !todo.isDone);
+  const data = notDone.map(todo => {
     const date = {
       title: todo.text,
       startDate: todo.date,
@@ -25,10 +26,7 @@ const Calendar = props => {
   const day = moment().toDate();
 
   return (
-    <Scheduler
-      locale="pt-BR"
-      data={propsToData(props)}
-    >
+    <Scheduler locale="pt-BR" data={propsToData(props)}>
       <ViewState defaultCurrentDate={day} />
       <Toolbar />
       <DateNavigator />
