@@ -4,15 +4,20 @@ import moment from "moment";
 import Container from "@material-ui/core/Container";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import Typography from "@material-ui/core/Typography";
+import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import EventAvailableIcon from '@material-ui/icons/EventAvailableOutlined';
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
+import FormatListBulletedOutlinedIcon from '@material-ui/icons/FormatListBulletedOutlined';
+import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined';
 import CalendarDialog from "../../components/Calendar/CalendarDialog";
 
 const Sidebar = props => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const closeCalendar = () => {
     setOpen(false);
@@ -22,16 +27,28 @@ const Sidebar = props => {
     setOpen(true);
   };
 
-  
+  const handleClick = (index, callback) => {
+    setSelectedIndex(index);
+    props.filterTodos(callback);
+  }
+
   const notDone = todo => !todo.isDone;
   const done = todo => todo.isDone;
   const weekTasks = todo => {
+    if (todo.isDone) {
+      return false;
+    }
     const today = moment().startOf("day");
     const todoDate = moment(todo.date);
-    const endDate = moment(today).add(7, "days").endOf("day");
+    const endDate = moment(today)
+      .add(7, "days")
+      .endOf("day");
     return todoDate.isBetween(today, endDate, null, "[]");
   };
   const overdue = todo => {
+    if (todo.isDone) {
+      return false;
+    }
     const today = moment().startOf("day");
     const todoDate = moment(todo.date);
     return todoDate.isBefore(today);
@@ -39,35 +56,66 @@ const Sidebar = props => {
 
   return (
     <Container disableGutters className={classes.sidebar}>
-      <Typography variant="h6">Opções</Typography>
-      <List component="nav" className={classes.root}>
-        <ListItem divider button onClick={() => props.filterTodos(notDone)} key="todos">
+      <List
+        component="nav"
+        className={classes.root}
+        subheader={
+          <ListSubheader component="div" id="nested-list-subheader">
+            Opções
+          </ListSubheader>
+        }
+      >
+        <ListItem
+          divider
+          button
+          selected={selectedIndex === 0}
+          onClick={() => handleClick(0, notDone)}
+          key="todos"
+        >
           <ListItemIcon>
-            <DateRangeIcon color="secondary" />
+            <FormatListBulletedOutlinedIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Minhas tarefas</ListItemText>
         </ListItem>
-        <ListItem divider button onClick={() => props.filterTodos(done)} key="done">
+        <ListItem
+          divider
+          button
+          selected={selectedIndex === 1}
+          onClick={() => handleClick(1, done)}
+          key="done"
+        >
           <ListItemIcon>
-            <DateRangeIcon color="secondary" />
+            <EventAvailableIcon fontSize="small" className={classes.done} />
           </ListItemIcon>
           <ListItemText>Tarefas concluídas</ListItemText>
         </ListItem>
-        <ListItem divider button onClick={() => props.filterTodos(weekTasks)} key="week">
+        <ListItem
+          divider
+          button
+          selected={selectedIndex === 2}
+          onClick={() => handleClick(2, weekTasks)}
+          key="week"
+        >
           <ListItemIcon>
-            <DateRangeIcon color="secondary" />
+            <AssignmentOutlinedIcon fontSize="small" className={classes.week} />
           </ListItemIcon>
           <ListItemText>Tarefas da semana</ListItemText>
         </ListItem>
-        <ListItem divider button onClick={() => props.filterTodos(overdue)} key="overdue">
+        <ListItem
+          divider
+          button
+          selected={selectedIndex === 3}
+          onClick={() => handleClick(3, overdue)}
+          key="overdue"
+        >
           <ListItemIcon>
-            <DateRangeIcon color="secondary" />
+            <QueryBuilderOutlinedIcon fontSize="small" className={classes.overdue} />
           </ListItemIcon>
           <ListItemText>Tarefas atrasadas</ListItemText>
         </ListItem>
         <ListItem divider button onClick={showCalendar} key="calendar">
           <ListItemIcon>
-            <DateRangeIcon color="secondary" />
+            <DateRangeIcon fontSize="small" color="secondary" />
           </ListItemIcon>
           <ListItemText>Ver tarefas no calendário</ListItemText>
         </ListItem>

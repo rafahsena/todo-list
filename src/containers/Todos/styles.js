@@ -1,11 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    margin: "1rem 0"
-  },
   title: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(3),
     color: theme.palette.primary.light
   },
   empty: {
