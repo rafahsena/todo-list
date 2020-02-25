@@ -6,9 +6,9 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import useStyles from "./styles";
 
 const DeleteDialog = props => {
-  const deleteTodo = index => {
+  const deleteTodo = id => {
     handleClose();
-    props.handleDelete(index);
+    props.handleDelete(id);
   };
   const handleClose = () => {
     props.setDialogOpen(false);

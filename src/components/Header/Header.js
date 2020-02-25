@@ -7,8 +7,9 @@ import Container from "@material-ui/core/Container";
 import useStyles from "./styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import { Badge } from "@material-ui/core";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import Badge from "@material-ui/core/Badge";
+import Link from "@material-ui/core/Link";
 
 const Header = props => {
   const classes = useStyles();
@@ -41,11 +42,18 @@ const Header = props => {
                 }
               })}
             </div>
-            <IconButton className={classes.inputRoot}>
-              <Badge>
-                <NotificationsNoneIcon />
-              </Badge>
-            </IconButton>
+            <Link
+              color="inherit"
+              href="https://github.com/rafahsena"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IconButton className={classes.inputRoot}>
+                <Badge>
+                  <GitHubIcon />
+                </Badge>
+              </IconButton>
+            </Link>
           </Toolbar>
         </Container>
       </AppBar>

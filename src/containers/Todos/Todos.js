@@ -19,7 +19,7 @@ const Todos = props => {
 
     // Find the index of todo on todos array
     const index = newTodos.findIndex(obj => obj.id === id);
-    
+
     newTodos[index].isDone = !newTodos[index].isDone;
     setTodos(newTodos);
     if (selectedTodoID === id) {
@@ -43,7 +43,10 @@ const Todos = props => {
   };
 
   const handleTodoClick = id => {
-    setSelectedTodoID(id);
+    const todo = todos.find(todo => todo.id === id);
+    if (!todo.isDone) {
+      setSelectedTodoID(id);
+    }
   };
 
   const handleEditTodoSubmit = todo => {
@@ -55,10 +58,9 @@ const Todos = props => {
     // Create a new todo object with updated values
     const newTodo = { ...todos[index], ...todo };
 
-
     newTodos.splice(index, 1, newTodo);
     setTodos(newTodos);
-    
+
     setSelectedTodoID(null);
   };
 
@@ -81,12 +83,11 @@ const Todos = props => {
 
   const todoList = todos => {
     return todos.length ? (
-      todos.map((todo, index) => (
+      todos.map(todo => (
         <Todo
           key={todo.id}
           text={todo.text}
           isDone={todo.isDone}
-          index={index}
           id={todo.id}
           deleteTodo={deleteTodo}
           handleCheckbox={handleCheckbox}

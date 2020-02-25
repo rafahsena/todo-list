@@ -3,7 +3,7 @@ import "./App.css";
 import Todos from "../Todos/Todos";
 import Header from "../../components/Header/Header";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../Sidebar/Sidebar";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import indigo from "@material-ui/core/colors/indigo";

@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     maxWidth: 360,
-    margin: theme.spacing(3, 0),
+    padding: theme.spacing(3, 0),
   }
 }));
 

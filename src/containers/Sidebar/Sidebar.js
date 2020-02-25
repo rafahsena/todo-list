@@ -6,7 +6,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-import CalendarDialog from "../Calendar/CalendarDialog";
+import CalendarDialog from "../../components/Calendar/CalendarDialog";
 
 const Sidebar = props => {
   const classes = useStyles();
