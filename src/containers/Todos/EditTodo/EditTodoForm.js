@@ -31,7 +31,7 @@ const EdiTodoForm = props => {
   };
 
   const handleSubmit = () => {
-    const todo = {text, date, note};
+    const todo = {id: props.id, text, date, note};
     props.handleSubmit(todo);
   };
 

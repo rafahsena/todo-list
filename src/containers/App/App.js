@@ -56,7 +56,7 @@ export default function App() {
               </Grid>
             </Hidden>
             <Grid item xs={12} md={10}>
-              <Todos getID={getID} todos={todos} setTodos={setTodos} />
+              <Todos getID={getID} todos={todos} setTodos={setTodos} pattern={pattern} />
             </Grid>
           </Grid>
         </Box>

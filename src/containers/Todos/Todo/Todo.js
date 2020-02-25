@@ -26,14 +26,14 @@ const Todo = props => {
 
   return (
     <React.Fragment>
-      <ListItem key={props.id} dense button divider disabled={props.isDone} onClick={() => props.handleTodoClick(props.index)} >
+      <ListItem key={props.id} dense button divider disabled={props.isDone} onClick={() => props.handleTodoClick(props.id)} >
         <ListItemIcon>
           <Checkbox
             edge="start"
             tabIndex={-1}
             disableRipple
             checked={checked}
-            onClick={() => props.handleCheckbox(props.index)}
+            onClick={() => props.handleCheckbox(props.id)}
           />
         </ListItemIcon>
         <ListItemText primary={props.text} />

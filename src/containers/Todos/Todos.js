@@ -12,15 +12,18 @@ import Typography from "@material-ui/core/Typography";
 const Todos = props => {
   const classes = useStyles();
   const { todos, setTodos } = props;
-  const [selectedTodoIndex, setSelectedTodoIndex] = useState(null);
+  const [selectedTodoID, setSelectedTodoID] = useState(null);
 
-  console.log(todos);
-  const handleCheckbox = index => {
+  const handleCheckbox = id => {
     const newTodos = todos.slice();
+
+    // Find the index of todo on todos array
+    const index = newTodos.findIndex(obj => obj.id === id);
+    
     newTodos[index].isDone = !newTodos[index].isDone;
     setTodos(newTodos);
-    if (selectedTodoIndex === index) {
-      setSelectedTodoIndex(null);
+    if (selectedTodoID === id) {
+      setSelectedTodoID(null);
     }
   };
 
@@ -39,25 +42,27 @@ const Todos = props => {
     }
   };
 
-  const handleTodoClick = index => {
-    setSelectedTodoIndex(index);
+  const handleTodoClick = id => {
+    setSelectedTodoID(id);
   };
 
   const handleEditTodoSubmit = todo => {
     const newTodos = todos.slice();
 
-    // Create a new todo object with updated values
-    const newTodo = { ...todos[selectedTodoIndex], ...todo };
-
     // Find the index of todo on todos array
     const index = newTodos.findIndex(obj => obj.id === todo.id);
 
+    // Create a new todo object with updated values
+    const newTodo = { ...todos[index], ...todo };
+
+
     newTodos.splice(index, 1, newTodo);
     setTodos(newTodos);
-    setSelectedTodoIndex(null);
+    
+    setSelectedTodoID(null);
   };
 
-  const selectedTodo = todos[selectedTodoIndex];
+  const selectedTodo = todos.find(todo => todo.id === selectedTodoID);
 
   const deleteTodo = id => {
     const newTodos = todos.slice();
@@ -67,29 +72,33 @@ const Todos = props => {
 
     newTodos.splice(index, 1);
     setTodos(newTodos);
-    if (selectedTodoIndex === index) {
-      setSelectedTodoIndex(null);
+    if (selectedTodoID === id) {
+      setSelectedTodoID(null);
     }
   };
 
-  let todoList = todos.length ? (
-    todos.map((todo, index) => (
-      <Todo
-        key={todo.id}
-        text={todo.text}
-        isDone={todo.isDone}
-        index={index}
-        id={todo.id}
-        deleteTodo={deleteTodo}
-        handleCheckbox={handleCheckbox}
-        handleTodoClick={handleTodoClick}
-      />
-    ))
-  ) : (
-    <Typography variant="h5" className={classes.empty}>
-      Uhul! Você não tem tarefas para fazer (ou tem?)
-    </Typography>
-  );
+  const matched = todos.filter(todo => todo.text.includes(props.pattern));
+
+  const todoList = todos => {
+    return todos.length ? (
+      todos.map((todo, index) => (
+        <Todo
+          key={todo.id}
+          text={todo.text}
+          isDone={todo.isDone}
+          index={index}
+          id={todo.id}
+          deleteTodo={deleteTodo}
+          handleCheckbox={handleCheckbox}
+          handleTodoClick={handleTodoClick}
+        />
+      ))
+    ) : (
+      <Typography variant="h5" className={classes.empty}>
+        Uhul! Você não tem tarefas para fazer (ou tem?)
+      </Typography>
+    );
+  };
 
   return (
     <Grid container className={classes.grid}>
@@ -98,7 +107,7 @@ const Todos = props => {
           <Container maxWidth="xl" disableGutters>
             <h2 className={classes.title}>Minhas Tarefas</h2>
             <AddTodo handleTodoInput={handleAddTodoInput} />
-            <List>{todoList}</List>
+            <List>{todoList(matched)}</List>
           </Container>
         </div>
       </Grid>
