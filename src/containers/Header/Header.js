@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,16 +10,24 @@ import SearchIcon from "@material-ui/icons/Search";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import Badge from "@material-ui/core/Badge";
 import Link from "@material-ui/core/Link";
+import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Hidden from "@material-ui/core/Hidden";
 
 const Header = props => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = bool => {
+    setOpen(bool);
+  };
 
   return (
     <div>
-      <AppBar position="static" elevation={0}>
+      <AppBar position="static" elevation={0} className={classes.appBar}>
         <Container maxWidth="xl">
           <Toolbar className={classes.header}>
             <IconButton
+              onClick={() => toggleDrawer(true)}
               edge="start"
               className={classes.menuButton}
               color="inherit"
@@ -57,6 +65,22 @@ const Header = props => {
           </Toolbar>
         </Container>
       </AppBar>
+      <Hidden mdUp>
+        <SwipeableDrawer
+          open={open}
+          onClose={() => toggleDrawer(false)}
+          anchor="left"
+          onOpen={() => toggleDrawer(true)}
+          disableGutters
+        >
+          <div
+            onClick={() => toggleDrawer(false)}
+            onKeyDown={() => toggleDrawer(false)}
+          >
+            {props.list}
+          </div>
+        </SwipeableDrawer>
+      </Hidden>
     </div>
   );
 };

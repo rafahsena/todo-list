@@ -6,6 +6,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     margin: theme.spacing(0, 4),
   },
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+  },
   menuButton: {
     marginRight: theme.spacing(2),
     display: 'block',

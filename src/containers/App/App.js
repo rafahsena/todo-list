@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./App.css";
 import Todos from "../Todos/Todos";
-import Header from "../../components/Header/Header";
+import Header from "../Header/Header";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Sidebar from "../Sidebar/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import indigo from "@material-ui/core/colors/indigo";
 import Hidden from "@material-ui/core/Hidden";
 import Calendar from "../../components/Calendar/Calendar";
+import OptionList from "../OptionsList/OptionsList";
 import InputBase from "@material-ui/core/InputBase";
 
 export default function App() {
@@ -41,7 +42,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Box className="wrapper" display="flex" flexDirection="column">
-        <Header>
+        <Header list={<OptionList filterTodos={filterTodos} />}>
           <InputBase
             placeholder="Buscar por..."
             inputProps={{
@@ -55,8 +56,10 @@ export default function App() {
           <Grid container>
             <Hidden smDown>
               <Grid item md={2}>
-                <Sidebar filterTodos={filterTodos}>
-                  <Calendar todos={todos} />
+                <Sidebar>
+                  <OptionList filterTodos={filterTodos}>
+                    <Calendar todos={todos} />
+                  </OptionList>
                 </Sidebar>
               </Grid>
             </Hidden>

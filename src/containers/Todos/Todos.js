@@ -94,7 +94,9 @@ const Todos = props => {
           deleteTodo={deleteTodo}
           handleCheckbox={handleCheckbox}
           handleTodoClick={handleTodoClick}
-        />
+        >
+          <EditTodo {...selectedTodo} handleSubmit={handleEditTodoSubmit} />
+        </Todo>
       ))
     ) : (
       <Typography variant="h5" className={classes.empty}>

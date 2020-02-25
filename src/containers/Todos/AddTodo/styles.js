@@ -4,13 +4,11 @@ const useStyles = makeStyles(theme => ({
   addTodo: {
     position: "relative",
     margin: theme.spacing(2),
-    width: 280,
     display: "inline-flex",
+    justifySelf: "center",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.black, 0.05),
-    [theme.breakpoints.up("sm")]: {
-      width: "95%"
-    }
+    width: "95%"
   },
   inputRoot: {
     padding: theme.spacing(0.75, 2),

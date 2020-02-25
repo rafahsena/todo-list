@@ -1,23 +1,27 @@
-import React, { useState } from "react";
-import useStyles from "./styles";
+import React, {useState} from "react";
 import moment from "moment";
-import Container from "@material-ui/core/Container";
+import useStyles from "./styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import EventAvailableIcon from '@material-ui/icons/EventAvailableOutlined';
+import EventAvailableIcon from "@material-ui/icons/EventAvailableOutlined";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
-import FormatListBulletedOutlinedIcon from '@material-ui/icons/FormatListBulletedOutlined';
-import QueryBuilderOutlinedIcon from '@material-ui/icons/QueryBuilderOutlined';
+import AssignmentOutlinedIcon from "@material-ui/icons/AssignmentOutlined";
+import FormatListBulletedOutlinedIcon from "@material-ui/icons/FormatListBulletedOutlined";
+import QueryBuilderOutlinedIcon from "@material-ui/icons/QueryBuilderOutlined";
 import CalendarDialog from "../../components/Calendar/CalendarDialog";
 
-const Sidebar = props => {
+const OptionList = props => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const handleClick = (index, callback) => {
+    setSelectedIndex(index);
+    props.filterTodos(callback);
+  };
 
   const closeCalendar = () => {
     setOpen(false);
@@ -26,18 +30,9 @@ const Sidebar = props => {
   const showCalendar = () => {
     setOpen(true);
   };
-
-  const handleClick = (index, callback) => {
-    setSelectedIndex(index);
-    props.filterTodos(callback);
-  }
-
   const notDone = todo => !todo.isDone;
   const done = todo => todo.isDone;
   const weekTasks = todo => {
-    if (todo.isDone) {
-      return false;
-    }
     const today = moment().startOf("day");
     const todoDate = moment(todo.date);
     const endDate = moment(today)
@@ -46,16 +41,13 @@ const Sidebar = props => {
     return todoDate.isBetween(today, endDate, null, "[]");
   };
   const overdue = todo => {
-    if (todo.isDone) {
-      return false;
-    }
     const today = moment().startOf("day");
     const todoDate = moment(todo.date);
     return todoDate.isBefore(today);
   };
 
   return (
-    <Container disableGutters className={classes.sidebar}>
+    <React.Fragment>
       <List
         component="nav"
         className={classes.root}
@@ -109,7 +101,10 @@ const Sidebar = props => {
           key="overdue"
         >
           <ListItemIcon>
-            <QueryBuilderOutlinedIcon fontSize="small" className={classes.overdue} />
+            <QueryBuilderOutlinedIcon
+              fontSize="small"
+              className={classes.overdue}
+            />
           </ListItemIcon>
           <ListItemText>Tarefas atrasadas</ListItemText>
         </ListItem>
@@ -123,8 +118,8 @@ const Sidebar = props => {
       <CalendarDialog open={open} closeCalendar={closeCalendar}>
         {props.children}
       </CalendarDialog>
-    </Container>
+    </React.Fragment>
   );
 };
 
-export default Sidebar;
+export default OptionList;
