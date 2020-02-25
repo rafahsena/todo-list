@@ -12,11 +12,8 @@ const useStyles = makeStyles(theme => ({
   top: {
     [theme.breakpoints.up("md")]: {
       display: "inline-flex",
-      justifyContent: "space-between",
+      alignItems: "center"
     },
-  },
-  buttonRoot: {
-    
   },
   container: {
     display: "flex",
@@ -43,7 +40,11 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: theme.spacing(2),
     color: theme.palette.primary.light,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    [theme.breakpoints.up("md")]: {
+      margin: theme.spacing(2, 0),
+      flexGrow: 1,
+    }
   },
 
   dateRoot: {
