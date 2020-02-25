@@ -39,6 +39,10 @@ export default function App() {
     }
   });
 
+  const matched = todos
+    .filter(filter)
+    .filter(todo => todo.text.includes(pattern));
+
   return (
     <ThemeProvider theme={theme}>
       <Box className="wrapper" display="flex" flexDirection="column">
@@ -68,8 +72,7 @@ export default function App() {
                 getID={getID}
                 todos={todos}
                 setTodos={setTodos}
-                pattern={pattern}
-                filtered={todos.filter(filter)}
+                matched={matched}
               />
             </Grid>
           </Grid>

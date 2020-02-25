@@ -4,7 +4,7 @@ import useStyles from "./styles";
 import Todo from "./Todo/Todo";
 import List from "@material-ui/core/List";
 import AddTodo from "./AddTodo/AddTodo";
-import EditTodo from "./EditTodo/EditTodo";
+import EditTodo from "../../components/EditTodo/EditTodo";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
@@ -79,10 +79,6 @@ const Todos = props => {
     }
   };
 
-  const matched = props.filtered.filter(todo =>
-    todo.text.includes(props.pattern)
-  );
-
   const todoList = todos => {
     return todos.length ? (
       todos.map(todo => (
@@ -100,7 +96,7 @@ const Todos = props => {
       ))
     ) : (
       <Typography variant="h5" className={classes.empty}>
-        Uhul! Você não tem tarefas para fazer (ou tem?)
+        Não existe nenhuma tarefa para mostrarmos aqui
       </Typography>
     );
   };
@@ -112,7 +108,7 @@ const Todos = props => {
           <Container maxWidth="xl" disableGutters>
             <h2 className={classes.title}>Minhas Tarefas</h2>
             <AddTodo handleTodoInput={handleAddTodoInput} />
-            <List>{todoList(matched)}</List>
+            <List>{todoList(props.matched)}</List>
           </Container>
         </div>
       </Grid>
