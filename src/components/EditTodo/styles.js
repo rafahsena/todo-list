@@ -14,7 +14,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center"
-  }
+  },
+  empty: {
+    color: "rgba(0, 0, 0, 0.25)"
+  },
 }));
 
 export default useStyles;

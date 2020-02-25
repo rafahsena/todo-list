@@ -30,9 +30,6 @@ const useStyles = makeStyles(theme => ({
       color: "rgba(0, 0, 0, 0.87)"
     }
   },
-  empty: {
-    color: "rgba(0, 0, 0, 0.25)"
-  },
 
   title: {
     margin: theme.spacing(2),
