@@ -5,6 +5,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     margin: theme.spacing(0, 4),
+    [theme.breakpoints.down('md')]: {
+      margin: theme.spacing(0),
+    },
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,

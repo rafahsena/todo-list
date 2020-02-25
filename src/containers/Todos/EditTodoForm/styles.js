@@ -9,6 +9,15 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     justifyContent: "space-between"
   },
+  top: {
+    [theme.breakpoints.up("md")]: {
+      display: "inline-flex",
+      justifyContent: "space-between",
+    },
+  },
+  buttonRoot: {
+    
+  },
   container: {
     display: "flex",
     flexGrow: 1,

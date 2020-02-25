@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import DatePicker from "../../../components/DatePicker/DatePicker";
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import Hidden from "@material-ui/core/Hidden";
 import useStyles from "./styles";
+import CloseIcon from "@material-ui/icons/Close";
 
 const EdiTodoForm = props => {
   const classes = useStyles();
@@ -31,15 +34,30 @@ const EdiTodoForm = props => {
   };
 
   const handleSubmit = () => {
-    const todo = {id: props.id, text, date, note};
+    const todo = { id: props.id, text, date, note };
     props.handleSubmit(todo);
+  };
+
+  const handleCancel = () => {
+    props.handleSubmit(null);
   };
 
   return (
     <React.Fragment>
-      <Typography className={classes.title} variant="h5" align="justify">
-        Editar Tarefa
-      </Typography>
+      <div className={classes.top}>
+        <Typography className={classes.title} variant="h5" align="justify">
+          Editar Tarefa
+        </Typography>
+        <Hidden smDown>
+          <IconButton
+            classes={{ root: classes.buttonRoot }}
+            onClick={handleCancel}
+          >
+            <CloseIcon />
+          </IconButton>
+        </Hidden>
+      </div>
+
       <form className={classes.container} autoComplete="off">
         <TextField
           label="Escreva sua tarefa"

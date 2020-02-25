@@ -2,7 +2,7 @@ import React from "react";
 import useStyles from "./styles";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import EditTodoForm from "../../containers/Todos/EditTodo/EditTodoForm";
+import EditTodoForm from "../../containers/Todos/EditTodoForm/EditTodoForm";
 
 const EditTodo = props => {
 

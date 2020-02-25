@@ -8,7 +8,10 @@ const useStyles = makeStyles(theme => ({
     justifySelf: "center",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.black, 0.05),
-    width: "95%"
+    width: "95%",
+    [theme.breakpoints.down('md')]: {
+      width: "75%",
+    }
   },
   inputRoot: {
     padding: theme.spacing(0.75, 2),

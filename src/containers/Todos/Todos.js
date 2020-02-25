@@ -5,6 +5,7 @@ import Todo from "./Todo/Todo";
 import List from "@material-ui/core/List";
 import AddTodo from "./AddTodo/AddTodo";
 import EditTodo from "../../components/EditTodo/EditTodo";
+import EditTodoForm from "./EditTodoForm/EditTodoForm";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
@@ -50,16 +51,18 @@ const Todos = props => {
   };
 
   const handleEditTodoSubmit = todo => {
-    const newTodos = todos.slice();
+    if (todo) {
+      const newTodos = todos.slice();
 
-    // Find the index of todo on todos array
-    const index = newTodos.findIndex(obj => obj.id === todo.id);
+      // Find the index of todo on todos array
+      const index = newTodos.findIndex(obj => obj.id === todo.id);
 
-    // Create a new todo object with updated values
-    const newTodo = { ...todos[index], ...todo };
+      // Create a new todo object with updated values
+      const newTodo = { ...todos[index], ...todo };
 
-    newTodos.splice(index, 1, newTodo);
-    setTodos(newTodos);
+      newTodos.splice(index, 1, newTodo);
+      setTodos(newTodos);
+    }
 
     setSelectedTodoID(null);
   };
@@ -91,7 +94,7 @@ const Todos = props => {
           handleCheckbox={handleCheckbox}
           handleTodoClick={handleTodoClick}
         >
-          <EditTodo {...selectedTodo} handleSubmit={handleEditTodoSubmit} />
+          <EditTodoForm {...selectedTodo} handleSubmit={handleEditTodoSubmit} />
         </Todo>
       ))
     ) : (
