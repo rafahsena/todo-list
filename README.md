@@ -1,68 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# TODOList
+Uma aplicação usando React + MaterialUI + React Scheduler.
 
-## Available Scripts
+## Fluxo da Aplicação
 
-In the project directory, you can run:
+Esta aplicação foi desenvolvida tendo em mente a ideia de componentes e containers. No final da seção tem uma imagem ilustrando o fluxo da aplicação.
 
-### `yarn start`
+A aplicação é dividida nesses containers e componentes:
+#### Containers:
+* **App** - Container raiz da aplicação.
+Este container possui um estado com as tarefas da aplicação, um estado que contém o filtro que será utilizado e um estado com o termo de busca digitado pelo usuário. 
+Ele é responsável por exibir o container **Todos** enviando como *props* uma lista de tarefas já filtradas.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* **Header** - Contém o menu superior da aplicação e é responsável por controlar o menu lateral em dispositivos móveis.
+Também é responsável por guardar o termo digitado na barra de pesquisa e enviá-lo para **App**.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+* **OptionsList** - Container que possui a lista de opções da aplicação. Todos os itens nessa lista exceto o último são filtros que são passados para **App** através da função *filterTodos* passada nas *props*. O último item é um botão para mostrar o calendário utilizando **CalendarDialog**. Este container é chamado em **Sidebar** para desktop e em **Header** para dispositivos móveis.
 
-### `yarn test`
+* **Todos** - Container responsável por lidar com as operações *CRUD* da tarefa. Nele são definidos as funções para adicionar, apagar ou atualizar uma tarefa (*handleAddTodoInput*, *deleteTodo* e *handleEditTodoSubmit* respectivamente). 
+Além disso, o container retorna uma lista com todas tarefas passadas pelas *props*.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* **AddTodo** - Exibe um botão de input e um botão para selecionar uma data. Recebe *handleAddTodoInput* como *props* e o executa quando a tecla *__Enter__* é pressionada.
 
-### `yarn build`
+* **EditTodoForm** - Exibe um formulário para editar as informações de uma tarefa.
+Recebe *handleEditTodoSubmit* e as informações de texto, data e anotações da tarefa como *props* e atualiza a tarefa com os dados no formulário após clicar no botão de salvar.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* **Todo** - Responsável por exibir uma tarefa específica. Recebe nas *props* as informações de uma tarefa específica as funções *deleteTodo* e *handleCheckbox*, sendo essa última responsável por marcar uma tarefa como concluída. Além disso, é responsável por chamar a tela de edição de uma tarefa (**EditTodo**) e o modal de confirmação de exclusão da tarefa (**DeleteDialog**).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+#### Componentes:
+* **Calendar** - Recebe como *props* uma lista de tarefas e as exibe em um calendário.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* **CalendarDialog** - Exibe **Calendar** dentro de um modal.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* **DatePicker** - Exibe um botão com ícone que quando clicado mostra um mini calendário para o usuário escolher uma data e a guarda. Se uma data for passada para esse componente através de *props* ele exibe um botão para apagar a data guardada.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* **DeleteDialog** - mostra um modal de confirmação de exclusão de uma tarefa. Recebe o id da tarefa e *deleteTodo* através de *props* e exclui a tarefa caso o usuário aperte o botão de confirmação.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* **EditTodo** - Um componente que estiliza e adiciona as margens para o **EditTodoForm**.
 
-## Learn More
+* **Sidebar** - Barra lateral que mostra as opções de filtros e mostrar calendário no desktop. Recebe como *props* o **OptionsList** e o renderiza.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Imagem do fluxo do app:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+![Diagrama](diagrams/diagram.png)
