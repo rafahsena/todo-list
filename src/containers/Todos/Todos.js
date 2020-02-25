@@ -79,7 +79,9 @@ const Todos = props => {
     }
   };
 
-  const matched = todos.filter(todo => todo.text.includes(props.pattern));
+  const matched = props.filtered.filter(todo =>
+    todo.text.includes(props.pattern)
+  );
 
   const todoList = todos => {
     return todos.length ? (

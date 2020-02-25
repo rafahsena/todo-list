@@ -14,13 +14,18 @@ import InputBase from "@material-ui/core/InputBase";
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [pattern, setPattern] = useState("");
+  const [filter, setFilter] = useState(() => () => true);
   const [id, setId] = useState(1);
 
   const getID = () => {
     const oldId = id;
     setId(oldId + 1);
     return oldId;
-  }
+  };
+
+  const filterTodos = callback => {
+    setFilter(() => callback);
+  };
 
   const handleSearch = event => {
     setPattern(event.target.value);
@@ -50,13 +55,19 @@ export default function App() {
           <Grid container>
             <Hidden smDown>
               <Grid item md={2}>
-                <Sidebar>
+                <Sidebar filterTodos={filterTodos}>
                   <Calendar todos={todos} />
                 </Sidebar>
               </Grid>
             </Hidden>
             <Grid item xs={12} md={10}>
-              <Todos getID={getID} todos={todos} setTodos={setTodos} pattern={pattern} />
+              <Todos
+                getID={getID}
+                todos={todos}
+                setTodos={setTodos}
+                pattern={pattern}
+                filtered={todos.filter(filter)}
+              />
             </Grid>
           </Grid>
         </Box>
